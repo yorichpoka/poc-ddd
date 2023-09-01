@@ -16,7 +16,6 @@
 	  <Folder Include="Exceptions\" />
 	  <Folder Include="Entities\" />
 	  <Folder Include="DomainEvents\" />
-	  <Folder Include="ValueObjects\" />
 	</ItemGroup>
 
 </Project>
