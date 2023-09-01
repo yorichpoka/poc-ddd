@@ -19,6 +19,8 @@ namespace POKA.POC.DDD.Domain.ValueObjects
             Value = value;
         }
 
+        public string GetTypeName() => this._type;
+
         public static TObjectId Parse<TObjectId>(string value) where TObjectId : BaseObjectId, IObjectId
         {
             try
