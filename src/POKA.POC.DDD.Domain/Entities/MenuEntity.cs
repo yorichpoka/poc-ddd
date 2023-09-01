@@ -4,7 +4,7 @@ using POKA.POC.DDD.Domain.Exceptions;
 
 namespace POKA.POC.DDD.Domain.Entities
 {
-    public class MenuEntity : BaseEntity<MenuId>
+    public class MenuEntity : BaseEntity<MenuId>, IHasCreatedOn
     {
         public HostId HostId { get; private set; } = null!;
         public string Name { get; private set; } = null!;
