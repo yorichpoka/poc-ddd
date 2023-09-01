@@ -1,6 +1,6 @@
 ﻿using POKA.POC.DDD.Domain.Enums;
 
-namespace POKA.POC.DDD.Domain
+namespace POKA.POC.DDD.Domain.Exceptions
 {
     public class AppException : ValidationException
     {
@@ -14,34 +14,34 @@ namespace POKA.POC.DDD.Domain
         public AppException(AppErrorEnum codeError)
             : base(codeError.GetDescription())
         {
-            this.ErrorCode = codeError;
+            ErrorCode = codeError;
         }
 
         public AppException(AppErrorEnum codeError, params object[] data)
             : base(codeError.GetDescription())
         {
-            this.ErrorCode = codeError;
+            ErrorCode = codeError;
 
             for (int index = 0; index < data.Length; index++)
             {
-                this.Data.Add(index.ToString(), data[index]);
+                Data.Add(index.ToString(), data[index]);
             }
         }
 
         public AppException(string message, AppErrorEnum codeError)
             : base(message)
         {
-            this.ErrorCode = codeError;
+            ErrorCode = codeError;
         }
 
         public AppException(string message, AppErrorEnum codeError, params object[] data)
             : base(message)
         {
-            this.ErrorCode = codeError;
+            ErrorCode = codeError;
 
             for (int index = 0; index < data.Length; index++)
             {
-                this.Data.Add(index.ToString(), data[index]);
+                Data.Add(index.ToString(), data[index]);
             }
         }
     }
