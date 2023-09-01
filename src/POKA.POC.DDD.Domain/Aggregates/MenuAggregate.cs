@@ -1,7 +1,6 @@
 ﻿using POKA.POC.DDD.Domain.DomainEvents;
 using POKA.POC.DDD.Domain.ValueObjects;
 using POKA.POC.DDD.Domain.Interfaces;
-using System.Collections.ObjectModel;
 using POKA.POC.DDD.Domain.Exceptions;
 using POKA.POC.DDD.Domain.Enums;
 
