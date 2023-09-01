@@ -1,4 +1,6 @@
 ﻿using POKA.POC.DDD.Domain.ValueObjects;
+using POKA.POC.DDD.Domain.Interfaces;
+using POKA.POC.DDD.Domain.Exceptions;
 
 namespace POKA.POC.DDD.Domain.Entities
 {
