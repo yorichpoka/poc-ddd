@@ -13,6 +13,9 @@
         [Description("Invalid parsing of object id.")]
         InvalidParseObjectId = 4000001,
 
+        [Description("Argument null passed.")]
+        ArgumentNullPassed = 4000002,
+
         #endregion
 
         #region 401
