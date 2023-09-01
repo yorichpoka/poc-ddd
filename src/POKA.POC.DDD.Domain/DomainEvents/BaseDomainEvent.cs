@@ -14,6 +14,11 @@ namespace POKA.POC.DDD.Domain.DomainEvents
 
         protected BaseDomainEvent(TObjectId id, int version, UserId? authorId = null)
         {
+            if (id.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(id));
+            }
+
             if (authorId != null && authorId.Value == default)
             {
                 throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(authorId));
