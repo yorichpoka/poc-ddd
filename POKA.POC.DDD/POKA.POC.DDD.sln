@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{90B6EF61
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POKA.POC.DDD.Domain", "src\POKA.POC.DDD.Domain\POKA.POC.DDD.Domain.csproj", "{A95396F7-311A-41E3-8CE4-D2CD9B0C19C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POKA.POC.DDD.Domain.Test", "tests\POKA.POC.DDD.Domain.Test\POKA.POC.DDD.Domain.Test.csproj", "{A4C91EA6-5FD0-49DD-93FF-A47A7D34099D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,12 +23,17 @@ Global
 		{A95396F7-311A-41E3-8CE4-D2CD9B0C19C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A95396F7-311A-41E3-8CE4-D2CD9B0C19C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A95396F7-311A-41E3-8CE4-D2CD9B0C19C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C91EA6-5FD0-49DD-93FF-A47A7D34099D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C91EA6-5FD0-49DD-93FF-A47A7D34099D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C91EA6-5FD0-49DD-93FF-A47A7D34099D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C91EA6-5FD0-49DD-93FF-A47A7D34099D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A95396F7-311A-41E3-8CE4-D2CD9B0C19C9} = {CCDE349D-00AC-4D9A-8F96-68EEB772FF3F}
+		{A4C91EA6-5FD0-49DD-93FF-A47A7D34099D} = {90B6EF61-6FBB-43E6-B19E-9D33F78A3316}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC6D4876-EDA9-4A36-B234-1D525F4DBB29}
