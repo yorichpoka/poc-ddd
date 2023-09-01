@@ -10,4 +10,10 @@
     <ProjectReference Include="..\POKA.POC.DDD.Domain\POKA.POC.DDD.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Queries\" />
+    <Folder Include="System\EventHandlers\" />
+  </ItemGroup>
+
 </Project>
