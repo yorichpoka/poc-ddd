@@ -56,6 +56,18 @@ namespace POKA.POC.DDD.Domain.Aggregates
             return menuAggregate;
         }
 
+        public void Rate(UserId userId, float score, UserId? authorId = null)
+        {
+            if (userId.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(userId));
+            }
+
+            var domainEvent = new MenuRated(this.Id, this.Version, userId, score, DateTime.UtcNow, authorId);
+
+            ApplyUncommittedDomainEvent(domainEvent);
+        }
+
         public override void ApplyDomainEventImplementation(IDomainEvent<MenuId> domainEvent)
         {
             switch (domainEvent)
@@ -71,6 +83,19 @@ namespace POKA.POC.DDD.Domain.Aggregates
                     this.CreatedOn = e.On;
                     this.Version = e.Version;
                     this.Id = e.Id;
+                    break;
+
+                #endregion
+
+                #region MenuRated
+
+                case MenuRated e:
+                    var ratings = new Rating(e.UserId, e.Score, e.On);
+
+                    this._ratings.Add(ratings);
+
+                    this.LastUpdatedOn = e.On;
+                    this.Version = e.Version;
                     break;
 
                 #endregion
