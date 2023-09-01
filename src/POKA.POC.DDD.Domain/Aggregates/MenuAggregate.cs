@@ -7,7 +7,7 @@ using POKA.POC.DDD.Domain.Enums;
 
 namespace POKA.POC.DDD.Domain.Aggregates
 {
-    public class MenuAggregate : BaseAggregate<MenuId>
+    public class MenuAggregate : AggregateRoot<MenuId>
     {
         private HashSet<MenuSectionId> _menuSections = new();
         private HashSet<Rating> _ratings = new();

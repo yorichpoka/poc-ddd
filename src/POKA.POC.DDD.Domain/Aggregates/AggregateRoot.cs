@@ -3,7 +3,7 @@ using POKA.POC.DDD.Domain.Interfaces;
 
 namespace POKA.POC.DDD.Domain.Aggregates
 {
-    public abstract class BaseAggregate<TObjectId> : IAggregateRoot<TObjectId> where TObjectId : BaseObjectId
+    public abstract class AggregateRoot<TObjectId> : IAggregateRoot<TObjectId> where TObjectId : BaseObjectId
     {
         private readonly List<IDomainEvent<TObjectId>> _uncommittedDomainEvents = new();
         private readonly List<IDomainEvent<TObjectId>> _domainEvents = new();
@@ -53,7 +53,7 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
         public override bool Equals(object obj)
         {
-            if (obj == null || obj is not BaseAggregate<TObjectId>)
+            if (obj == null || obj is not AggregateRoot<TObjectId>)
             {
                 return false;
             }
@@ -68,7 +68,7 @@ namespace POKA.POC.DDD.Domain.Aggregates
                 return false;
             }
 
-            var item = (BaseAggregate<TObjectId>)obj;
+            var item = (AggregateRoot<TObjectId>)obj;
 
             if (item.IsTransient || IsTransient)
             {
@@ -99,7 +99,7 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
         public abstract void Snapshot();
 
-        public static bool operator ==(BaseAggregate<TObjectId> left, BaseAggregate<TObjectId> right)
+        public static bool operator ==(AggregateRoot<TObjectId> left, AggregateRoot<TObjectId> right)
         {
             bool result;
 
@@ -115,7 +115,7 @@ namespace POKA.POC.DDD.Domain.Aggregates
             return result;
         }
 
-        public static bool operator !=(BaseAggregate<TObjectId> left, BaseAggregate<TObjectId> right) => !(left == right);
+        public static bool operator !=(AggregateRoot<TObjectId> left, AggregateRoot<TObjectId> right) => !(left == right);
 
         public override string ToString() => $"{GetType().Name} [Id={Id}]";
     }
