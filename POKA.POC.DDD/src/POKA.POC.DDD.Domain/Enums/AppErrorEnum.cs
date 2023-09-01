@@ -10,6 +10,9 @@
         [Description("Bad request")]
         BadRequest = 4000000,
 
+        [Description("Invalid parsing of object id.")]
+        InvalidParseObjectId = 4000001,
+
         #endregion
 
         #region 401
