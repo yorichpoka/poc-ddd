@@ -16,6 +16,21 @@ namespace POKA.POC.DDD.Domain.Entities
 
         public MenuEntity(HostId hostId, string name, string description)
         {
+            if (hostId.HasValue() == false)
+            {
+                throw new AppException(Enums.AppErrorEnum.ArgumentNullPassed, nameof(hostId));
+            }
+
+            if (name.HasValue() == false)
+            {
+                throw new AppException(Enums.AppErrorEnum.ArgumentNullPassed, nameof(name));
+            }
+
+            if (description.HasValue() == false)
+            {
+                throw new AppException(Enums.AppErrorEnum.ArgumentNullPassed, nameof(description));
+            }
+
             CreatedOn = DateTime.UtcNow;
             Description = description;
             HostId = hostId;
