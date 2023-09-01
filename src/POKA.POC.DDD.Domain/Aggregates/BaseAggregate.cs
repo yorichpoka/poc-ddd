@@ -1,10 +1,9 @@
 ﻿using POKA.POC.DDD.Domain.ValueObjects;
 using POKA.POC.DDD.Domain.Interfaces;
-using POKA.POC.DDD.Domain.Entities;
 
 namespace POKA.POC.DDD.Domain.Aggregates
 {
-    public abstract class BaseAggregate<TObjectId> : BaseEntity<TObjectId>, IAggregateRoot<TObjectId> where TObjectId : BaseObjectId
+    public abstract class BaseAggregate<TObjectId> : IAggregateRoot<TObjectId> where TObjectId : BaseObjectId
     {
         private readonly List<IDomainEvent<TObjectId>> _uncommittedDomainEvents = new();
         private readonly List<IDomainEvent<TObjectId>> _domainEvents = new();
@@ -14,15 +13,13 @@ namespace POKA.POC.DDD.Domain.Aggregates
         public int Version { get; protected set; }
         public DateTime CreatedOn { get; protected set; }
 
-        public new BaseObjectId GetId() => Id;
+        protected void ApplyUncommittedDomainEvent(IDomainEvent<TObjectId> domainEvent) => ApplyDomainEventInternal(domainEvent, false);
 
         public IReadOnlyCollection<IDomainEvent<TObjectId>> GetUncommittedDomainEvents() => _uncommittedDomainEvents.AsReadOnly();
 
-        public IReadOnlyCollection<IDomainEvent<TObjectId>> GetDomainEvents() => _domainEvents.AsReadOnly();
-
-        protected void ApplyUncommittedDomainEvent(IDomainEvent<TObjectId> domainEvent) => ApplyDomainEventInternal(domainEvent, false);
-
         public void ApplyDomainEvent(IDomainEvent<TObjectId> domainEvent) => ApplyDomainEventInternal(domainEvent, true);
+
+        public IReadOnlyCollection<IDomainEvent<TObjectId>> GetDomainEvents() => _domainEvents.AsReadOnly();
 
         private void ApplyDomainEventInternal(IDomainEvent<TObjectId> domainEvent, bool committed = false)
         {
@@ -119,5 +116,7 @@ namespace POKA.POC.DDD.Domain.Aggregates
         }
 
         public static bool operator !=(BaseAggregate<TObjectId> left, BaseAggregate<TObjectId> right) => !(left == right);
+
+        public override string ToString() => $"{GetType().Name} [Id={Id}]";
     }
 }
