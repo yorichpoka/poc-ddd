@@ -1,4 +1,5 @@
 ﻿using POKA.POC.DDD.Domain.Interfaces;
+using POKA.POC.DDD.Domain.Exceptions;
 using POKA.POC.DDD.Domain.Enums;
 
 namespace POKA.POC.DDD.Domain.ValueObjects
