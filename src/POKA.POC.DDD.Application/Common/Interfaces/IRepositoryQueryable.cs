@@ -1,0 +1,19 @@
+﻿namespace POKA.POC.DDD.Application.Interfaces
+{
+    public interface IRepositoryQueryable<TEntity> where TEntity : class, IEntity
+    {
+        Task<TDestination> FirstOrDefaultMappedAsync<TDestination>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default);
+        Task<List<TDestination>> GetMappedAsync<TDestination>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default);
+        Task<TDestination> MaxAsync<TDestination>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default);
+        Task<TDestination> MinAsync<TDestination>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default);
+        Task<List<TDestination>> GetMappedAsync<TDestination>(Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default);
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
+        Task<List<TEntity>> FilterAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>>? predicate = null, CancellationToken cancellationToken = default);
+        Task<List<T>> ExecuteQueryAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default);
+        Task<int> CountQueryAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default);
+        Task<TEntity> FirstOrDefaultAsync(CancellationToken cancellationToken = default);
+        Task<List<TEntity>> FetchAsync(CancellationToken cancellationToken = default);
+        IQueryable<TEntity> AsQueryable();
+    }
+}
