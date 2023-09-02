@@ -4,7 +4,7 @@ using POKA.POC.DDD.Domain.Enums;
 
 namespace POKA.POC.DDD.Domain.Entities
 {
-    public abstract record BasePersonEntity<TObjectId> : BaseEntity<TObjectId>
+    public abstract class BasePersonEntity<TObjectId> : BaseEntity<TObjectId>
         where TObjectId : BaseObjectId
     {
         public string FirstName { get; protected set; } = null!;
