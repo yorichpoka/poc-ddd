@@ -19,6 +19,21 @@ namespace POKA.POC.DDD.Domain.Entities
 
         protected BasePersonEntity(TObjectId id, string firstName, string lastName)
         {
+            if (id.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(id));
+            }
+
+            if (firstName.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(firstName));
+            }
+
+            if (lastName.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(lastName));
+            }
+
             FirstName = firstName;
             LastName = lastName;
             Id = id;
