@@ -1,6 +1,7 @@
 ﻿using POKA.POC.DDD.Domain.ValueObjects;
 using POKA.POC.DDD.Domain.Interfaces;
 using POKA.POC.DDD.Domain.Exceptions;
+using POKA.POC.DDD.Domain.Enums;
 
 namespace POKA.POC.DDD.Domain.Entities
 {
@@ -20,17 +21,17 @@ namespace POKA.POC.DDD.Domain.Entities
         {
             if (hostId.HasValue() == false)
             {
-                throw new AppException(Enums.AppErrorEnum.ArgumentNullPassed, nameof(hostId));
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(hostId));
             }
 
             if (name.HasValue() == false)
             {
-                throw new AppException(Enums.AppErrorEnum.ArgumentNullPassed, nameof(name));
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(name));
             }
 
             if (description.HasValue() == false)
             {
-                throw new AppException(Enums.AppErrorEnum.ArgumentNullPassed, nameof(description));
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(description));
             }
 
             CreatedOn = DateTime.UtcNow;
