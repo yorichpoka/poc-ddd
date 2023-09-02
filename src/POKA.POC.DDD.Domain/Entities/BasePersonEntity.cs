@@ -13,6 +13,10 @@ namespace POKA.POC.DDD.Domain.Entities
         public Address? Address { get; protected set; } = null;
         public DateTime? BornOn { get; protected set; } = null;
 
+        protected BasePersonEntity()
+        {
+        }
+
         protected BasePersonEntity(TObjectId id, string firstName, string lastName)
         {
             FirstName = firstName;
