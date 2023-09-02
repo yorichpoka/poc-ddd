@@ -19,6 +19,9 @@
         [Description("Enum value not found.")]
         EnumValueNotFound = 4000003,
 
+        [Description("Argument negative passed.")]
+        ArgumentNegativePassed = 4000004,
+
         #endregion
 
         #region 401
