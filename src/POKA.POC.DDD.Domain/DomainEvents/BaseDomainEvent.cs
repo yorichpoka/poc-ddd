@@ -10,9 +10,10 @@ namespace POKA.POC.DDD.Domain.DomainEvents
     {
         public TObjectId Id { get; protected set; } = null!;
         public UserId? AuthorId { get; protected set; }
+        public DateTime On { get; protected set; }
         public int Version { get; protected set; }
 
-        protected BaseDomainEvent(TObjectId id, int version, UserId? authorId = null)
+        protected BaseDomainEvent(TObjectId id, int version, UserId? authorId = null, DateTime? on = null)
         {
             if (id.HasValue() == false)
             {
@@ -24,6 +25,7 @@ namespace POKA.POC.DDD.Domain.DomainEvents
                 throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(authorId));
             }
 
+            On = on ?? DateTime.UtcNow;
             AuthorId = authorId;
             Version = version;
             Id = id;
