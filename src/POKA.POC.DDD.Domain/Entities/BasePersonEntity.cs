@@ -1,19 +1,19 @@
-﻿using POKA.POC.DDD.Domain.Exceptions;
+﻿using POKA.POC.DDD.Domain.ValueObjects;
+using POKA.POC.DDD.Domain.Exceptions;
 using POKA.POC.DDD.Domain.Enums;
 
-namespace POKA.POC.DDD.Domain.ValueObjects
+namespace POKA.POC.DDD.Domain.Entities
 {
-    public abstract record BasePerson<TObjectId>
+    public abstract record BasePersonEntity<TObjectId> : BaseEntity<TObjectId>
         where TObjectId : BaseObjectId
     {
-        public TObjectId Id { get; protected set; } = null!;
         public string FirstName { get; protected set; } = null!;
         public string LastName { get; protected set; } = null!;
         public string? Email { get; protected set; } = null!;
         public Address? Address { get; protected set; } = null;
         public DateTime? BornOn { get; protected set; } = null;
 
-        protected BasePerson(TObjectId id, string firstName, string lastName)
+        protected BasePersonEntity(TObjectId id, string firstName, string lastName)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -27,7 +27,7 @@ namespace POKA.POC.DDD.Domain.ValueObjects
                 throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(value));
             }
 
-            this.Address = value;
+            Address = value;
         }
     }
 }
