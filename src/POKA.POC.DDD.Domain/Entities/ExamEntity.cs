@@ -9,12 +9,13 @@ namespace POKA.POC.DDD.Domain.Entities
         public string Code { get; private set; } = null!;
         public string Name { get; private set; } = null!;
         public string? Description { get; private set; }
+        public DateTime On { get; private set; }
 
         public ExamEntity()
         {
         }
 
-        public ExamEntity(string code, string name, string? description = null)
+        public ExamEntity(string code, string name, DateTime on, string? description = null)
         {
             if (name.HasValue() == false)
             {
@@ -29,6 +30,7 @@ namespace POKA.POC.DDD.Domain.Entities
             Description = description;
             Code = code;
             Name = name;
+            On = on;
         }
     }
 }
