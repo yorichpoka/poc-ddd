@@ -1,15 +1,16 @@
 ﻿using POKA.POC.DDD.Domain.ValueObjects;
 using POKA.POC.DDD.Domain.Interfaces;
+using POKA.POC.DDD.Domain.Entities;
 
 namespace POKA.POC.DDD.Domain.Aggregates
 {
-    public abstract class AggregateRoot<TObjectId> : IAggregateRoot<TObjectId> where TObjectId : BaseObjectId
+    public abstract class AggregateRoot<TObjectId> : BaseEntity<TObjectId>, IAggregateRoot<TObjectId>
+        where TObjectId : BaseObjectId
     {
         private readonly List<IDomainEvent<TObjectId>> _uncommittedDomainEvents = new();
         private readonly List<IDomainEvent<TObjectId>> _domainEvents = new();
         int? _requestedHashCode;
 
-        public TObjectId Id { get; protected set; } = null!;
         public int Version { get; protected set; }
         public DateTime CreatedOn { get; protected set; }
 
