@@ -13,6 +13,8 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
         public int Version { get; protected set; }
         public DateTime CreatedOn { get; protected set; }
+        public UserId? CreatedByUserId { get; protected set; } = null;
+        public DateTime? LastUpdatedOn { get; protected set; } = null;
 
         protected void ApplyUncommittedDomainEvent(IDomainEvent<TObjectId> domainEvent) => ApplyDomainEventInternal(domainEvent, false);
 

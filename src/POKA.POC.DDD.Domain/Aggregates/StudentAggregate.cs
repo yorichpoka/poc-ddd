@@ -16,8 +16,6 @@ namespace POKA.POC.DDD.Domain.Aggregates
         public string? Email { get; protected set; } = null!;
         public Address? Address { get; protected set; } = null;
         public DateTime? BornOn { get; protected set; } = null;
-        public DateTime? LastUpdatedOn { get; private set; } = null;
-        public UserId? CreatedByUserId { get; private set; } = null;
 
         public ReadOnlyCollection<StudentCourseEntity> GetStudentCourses() => (
             this._studentCourses

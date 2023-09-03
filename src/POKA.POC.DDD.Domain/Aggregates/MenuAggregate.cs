@@ -14,8 +14,6 @@ namespace POKA.POC.DDD.Domain.Aggregates
         public HostId HostId { get; private set; } = null!;
         public string Name { get; private set; } = null!;
         public string Description { get; private set; } = null!;
-        public UserId? CreatedByUserId { get; private set; } = null;
-        public DateTime? LastUpdatedOn { get; private set; } = null;
 
         public float GetAverageRatings() => (
             this._ratings
