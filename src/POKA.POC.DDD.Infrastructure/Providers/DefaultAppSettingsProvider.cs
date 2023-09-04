@@ -1,10 +1,10 @@
 ﻿namespace POKA.POC.DDD.Infrastructure.Providers
 {
-    public class AppSettingsProvider : IAppSettingsProvider
+    public class DefaultAppSettingsProvider : IAppSettingsProvider
     {
         private readonly IConfiguration _configuration;
 
-        public AppSettingsProvider(IConfiguration configuration)
+        public DefaultAppSettingsProvider(IConfiguration configuration)
         {
             _configuration = configuration;
         }
