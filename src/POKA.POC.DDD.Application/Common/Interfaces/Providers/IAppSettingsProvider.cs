@@ -1,4 +1,4 @@
-﻿namespace POKA.POC.DDD.Application.Common.Interfaces.Providers
+﻿namespace POKA.POC.DDD.Application.Interfaces
 {
     public interface IAppSettingsProvider
     {
