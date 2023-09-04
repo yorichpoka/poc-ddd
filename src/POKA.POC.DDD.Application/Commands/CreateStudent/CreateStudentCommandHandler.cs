@@ -1,15 +1,16 @@
 ﻿using POKA.POC.DDD.Application.Interfaces;
-using POKA.POC.DDD.Domain.Enums;
 
 namespace POKA.POC.DDD.Extensions.Commands
 {
     public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, StudentId>
     {
+        private readonly ICurrentUserProvider _currentUserProvider;
         private readonly IMasterDbRepository _masterDbRepository;
         private readonly IMediator _mediator;
 
-        public CreateStudentCommandHandler(IMasterDbRepository masterDbRepository, IMediator mediator)
+        public CreateStudentCommandHandler(ICurrentUserProvider currentUserProvider, IMasterDbRepository masterDbRepository, IMediator mediator)
         {
+            _currentUserProvider = currentUserProvider;
             _masterDbRepository = masterDbRepository;
             _mediator = mediator;
         }
@@ -28,6 +29,7 @@ namespace POKA.POC.DDD.Extensions.Commands
 
             var studentAggregate =  StudentAggregate
                                         .Create(
+                                            authorId: this._currentUserProvider.Id,
                                             firstName: request.FirstName,
                                             lastName: request.LastName,
                                             bornOn: request.BornOn,
