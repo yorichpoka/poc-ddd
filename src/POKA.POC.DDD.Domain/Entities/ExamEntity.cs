@@ -11,7 +11,7 @@ namespace POKA.POC.DDD.Domain.Entities
         public string? Description { get; private set; }
         public DateTime On { get; private set; }
 
-        public ExamEntity()
+        private ExamEntity()
         {
         }
 

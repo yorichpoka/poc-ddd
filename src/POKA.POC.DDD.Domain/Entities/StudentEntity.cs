@@ -7,7 +7,7 @@ namespace POKA.POC.DDD.Domain.Entities
     {
         public DateTime CreatedOn { get; private set; }
 
-        public StudentEntity()
+        private StudentEntity()
             : base()
         {
         }

@@ -10,7 +10,7 @@ namespace POKA.POC.DDD.Domain.Entities
         public string Name { get; private set; } = null!;
         public string Description { get; private set; } = null!;
 
-        public MenuSectionEntity()
+        private MenuSectionEntity()
         {
         }
 

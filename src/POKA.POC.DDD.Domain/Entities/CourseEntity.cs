@@ -10,7 +10,7 @@ namespace POKA.POC.DDD.Domain.Entities
         public string Description { get; private set; } = null!;
         public short Coefficient { get; private set; }
 
-        public CourseEntity()
+        private CourseEntity()
         {
         }
 

@@ -13,7 +13,7 @@ namespace POKA.POC.DDD.Domain.Entities
         public DateTime CreatedOn { get; private set; }
         public DateTime? LastUpdatedOn { get; private set; } = null;
 
-        public MenuEntity()
+        private MenuEntity()
         {
         }
 

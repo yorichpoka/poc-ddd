@@ -10,7 +10,7 @@ namespace POKA.POC.DDD.Domain.Entities
         public CourseId CourseId { get; private set; } = null!;
         public float Score { get; private set; }
 
-        public StudentCourseEntity()
+        private StudentCourseEntity()
         {
         }
 
