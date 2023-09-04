@@ -8,13 +8,12 @@ namespace POKA.POC.DDD.Domain.Entities
     {
         public StudentId StudentId { get; private set; } = null!;
         public CourseId CourseId { get; private set; } = null!;
-        public float Score { get; private set; }
 
         private StudentCourseEntity()
         {
         }
 
-        public StudentCourseEntity(StudentId studentId, CourseId courseId, float score)
+        public StudentCourseEntity(StudentId studentId, CourseId courseId)
         {
             if (studentId.HasValue() == false)
             {
@@ -26,14 +25,8 @@ namespace POKA.POC.DDD.Domain.Entities
                 throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(courseId));
             }
 
-            if (score < 0)
-            {
-                throw new AppException(AppErrorEnum.ArgumentNegativePassed, nameof(score));
-            }
-
-            Score = score;
-            CourseId = courseId;
             StudentId = studentId;
+            CourseId = courseId;
         }
     }
 }
