@@ -14,7 +14,14 @@ namespace POKA.POC.DDD.Domain.Aggregates
                 .AsReadOnly()
         );
 
-        public static StudentAggregate Create(string firstName, string lastName, string? email, Address? address, DateTime? bornOn, UserId? authorId = null)
+        public static StudentAggregate Create(
+            string firstName, 
+            string lastName, 
+            string? email = null, 
+            Address? address = null, 
+            DateTime? bornOn = null, 
+            UserId? authorId = null
+        )
         {
             if (firstName.HasValue() == false)
             {
