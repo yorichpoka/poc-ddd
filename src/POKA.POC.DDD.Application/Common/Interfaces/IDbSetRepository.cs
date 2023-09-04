@@ -1,6 +1,7 @@
 ﻿namespace POKA.POC.DDD.Application.Interfaces
 {
-    public interface IDbSetRepository<TEntity> : IRepositoryQueryable<TEntity> where TEntity : class, IEntity
+    public interface IDbSetRepository<TEntity> : IRepositoryQueryable<TEntity> 
+        where TEntity : class, IEntity
     {
         Task DeleteAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
         Task<TEntity[]> CreateRangeAsync(TEntity[] entities, CancellationToken cancellationToken = default);
