@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\POKA.POC.DDD.Infrastructure\POKA.POC.DDD.Infrastructure.csproj" />
   </ItemGroup>
 
