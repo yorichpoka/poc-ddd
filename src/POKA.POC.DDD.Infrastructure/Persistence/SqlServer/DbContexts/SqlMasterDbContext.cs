@@ -1,4 +1,6 @@
-﻿namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.DbContexts
+﻿using POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfiguration;
+
+namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.DbContexts
 {
     public class SqlMasterDbContext : DbContext
     {
@@ -7,9 +9,9 @@
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder) =>
+            modelBuilder
+                .ApplyConfiguration(new ExamEntityTypeConfiguration())
+            ;
     }
 }
