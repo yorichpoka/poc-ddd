@@ -13,6 +13,10 @@ namespace POKA.POC.DDD.Domain.DomainEvents
         public DateTime On { get; protected set; }
         public int Version { get; protected set; }
 
+        protected BaseDomainEvent()
+        {
+        }
+
         protected BaseDomainEvent(TObjectId id, int version, UserId? authorId = null, DateTime? on = null)
         {
             if (id.HasValue() == false)

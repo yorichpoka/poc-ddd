@@ -11,6 +11,11 @@ namespace POKA.POC.DDD.Domain.DomainEvents
         public Address? Address { get; protected set; } = null;
         public DateTime? BornOn { get; protected set; } = null;
 
+        private StudentCreated()
+            : base()
+        {
+        }
+
         public StudentCreated(StudentId id, string firstName, string lastName, string? email, Address? address, DateTime? bornOn, UserId? authorId = null)
             : base(id, 0, authorId)
         {

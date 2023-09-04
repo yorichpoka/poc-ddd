@@ -9,6 +9,11 @@ namespace POKA.POC.DDD.Domain.DomainEvents
         public float Score { get; private set; }
         public DateTime On { get; private set; }
 
+        private MenuRated()
+            : base()
+        {
+        }
+
         public MenuRated(MenuId id, int version, UserId userId, float score, DateTime on, UserId? authorId = null)
             : base(id, version, authorId)
         {

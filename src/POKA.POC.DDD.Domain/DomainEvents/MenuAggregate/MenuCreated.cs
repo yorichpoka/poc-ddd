@@ -8,7 +8,11 @@ namespace POKA.POC.DDD.Domain.DomainEvents
         public HostId HostId { get; private set; } = null!;
         public string Name { get; private set; } = null!;
         public string Description { get; private set; } = null!;
-        public DateTime On { get; private set; }
+
+        private MenuCreated()
+            : base()
+        {
+        }
 
         public MenuCreated(MenuId id, HostId hostId, string name, string description, DateTime on, UserId? authorId = null)
             : base(id, 0, authorId)
