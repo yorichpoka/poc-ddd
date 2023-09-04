@@ -6,12 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="11.5.2" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\POKA.POC.DDD.Domain\POKA.POC.DDD.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Queries\" />
     <Folder Include="System\EventHandlers\" />
   </ItemGroup>
