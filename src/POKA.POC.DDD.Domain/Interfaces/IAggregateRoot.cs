@@ -2,7 +2,7 @@
 
 namespace POKA.POC.DDD.Domain.Interfaces
 {
-    public interface IAggregateRoot<TObjectId> : IHasCreatedOn, IHasVersion, ICloneable
+    public interface IAggregateRoot<TObjectId> : IHasCreatedOn, IHasVersion, IHasCreatedByUserId, ICloneable
         where TObjectId : BaseObjectId
     {
         TObjectId Id { get; }
