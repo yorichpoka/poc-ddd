@@ -22,6 +22,9 @@
         [Description("Argument negative passed.")]
         ArgumentNegativePassed = 4000004,
 
+        [Description("Email already taken.")]
+        ConflictEmailTaken = 4000005,
+
         #endregion
 
         #region 401
