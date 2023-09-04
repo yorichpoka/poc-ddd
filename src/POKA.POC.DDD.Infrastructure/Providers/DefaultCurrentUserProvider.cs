@@ -1,6 +1,6 @@
 ﻿namespace POKA.POC.DDD.Infrastructure.Providers
 {
-    internal class DefaultCurrentUserProvider : ICurrentUserProvider
+    public class DefaultCurrentUserProvider : ICurrentUserProvider
     {
         public UserId? Id => null;
 
