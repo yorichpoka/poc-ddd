@@ -1,11 +1,39 @@
-﻿namespace POKA.POC.DDD.Application.ConsoleApp
+﻿using Microsoft.Extensions.DependencyInjection;
+using POKA.POC.DDD.Infrastructure.Providers;
+using POKA.POC.DDD.Extensions.Commands;
+
+namespace POKA.POC.DDD.Application.ConsoleApp
 {
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        private static IConfiguration Configuration =>  new ConfigurationBuilder()
+                                                            .AddJsonFile("appsettings.json")
+                                                            .Build();
+        private static IServiceProvider ServiceProvider =>  new ServiceCollection()
+                                                                .AddSingleton<IConfiguration>(Configuration)
+                                                                .AddScoped<ICurrentUserProvider, DefaultCurrentUserProvider>()
+                                                                .AddDomainAppInfrastructure()
+                                                                .BuildServiceProvider();
+
+        public static async Task Main(string[] args)
         {
-            // See https://aka.ms/new-console-template for more information
-            Console.WriteLine("Hello, World!");
+            var mediator = ServiceProvider.GetRequiredService<IMediator>();
+
+            Console.WriteLine(
+                @"
+                    ************************
+                    **** Create student ****
+                    ************************
+                "
+            );
+
+            var firstName = "John";
+            var lastName = "DOE";
+
+            var command = new CreateStudentCommand(firstName, lastName);
+            var result = await mediator.Send(command);
+
+            Console.ReadLine();
         }
     }
 }
