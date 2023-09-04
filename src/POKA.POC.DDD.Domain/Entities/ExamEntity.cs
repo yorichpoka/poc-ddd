@@ -10,6 +10,7 @@ namespace POKA.POC.DDD.Domain.Entities
         public string Name { get; private set; } = null!;
         public string? Description { get; private set; }
         public DateTime On { get; private set; }
+        public IReadOnlySet<CourseEntity> Courses { get; private set; } = new HashSet<CourseEntity>();
 
         private ExamEntity()
         {
