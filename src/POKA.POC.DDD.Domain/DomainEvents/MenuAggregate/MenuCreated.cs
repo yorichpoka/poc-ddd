@@ -15,7 +15,7 @@ namespace POKA.POC.DDD.Domain.DomainEvents
         }
 
         public MenuCreated(MenuId id, HostId hostId, string name, string description, DateTime on, UserId? authorId = null)
-            : base(id, 0, authorId)
+            : base(id, 0, authorId, on)
         {
             if (hostId.HasValue() == false)
             {
@@ -35,7 +35,6 @@ namespace POKA.POC.DDD.Domain.DomainEvents
             Description = description;
             HostId = hostId;
             Name = name;
-            On = on;
         }
     }
 }
