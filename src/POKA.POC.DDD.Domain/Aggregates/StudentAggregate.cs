@@ -45,10 +45,35 @@ namespace POKA.POC.DDD.Domain.Aggregates
             return aggregate;
         }
 
+        public void EnrolTheCourse(CourseId courseId, UserId? authorId = null)
+        {
+            if (courseId.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(courseId));
+            }
+
+            var domainEvent = new StudentEnrolledToCourse(this.Id, this.Version + 1, courseId, authorId);
+
+            ApplyUncommittedDomainEvent(domainEvent);
+        }
+
         public override void ApplyDomainEventImplementation(IDomainEvent<StudentId> domainEvent)
         {
             switch (domainEvent)
             {
+                #region StudentEnrolledToCourse
+
+                case StudentEnrolledToCourse e:
+                    var studentCourseEntity = new StudentCourseEntity(this.Id, e.CourseId);
+
+                    this._studentCourses.Add(studentCourseEntity);
+
+                    this.LastUpdatedOn = e.On;
+                    this.Version = e.Version;
+                    break;
+
+                #endregion
+
                 #region StudentCreated
 
                 case StudentCreated e:
@@ -58,7 +83,6 @@ namespace POKA.POC.DDD.Domain.Aggregates
                     this.Address = e.Address;
                     this.BornOn = e.BornOn;
                     this.Email = e.Email;
-
 
                     this.Version = e.Version;
                     this.CreatedOn = e.On;
