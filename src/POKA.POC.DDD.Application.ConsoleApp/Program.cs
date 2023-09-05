@@ -11,7 +11,6 @@ namespace POKA.POC.DDD.Application.ConsoleApp
                                                             .Build();
         private static IServiceProvider ServiceProvider =>  new ServiceCollection()
                                                                 .AddSingleton<IConfiguration>(Configuration)
-                                                                .AddScoped<ICurrentUserProvider, DefaultCurrentUserProvider>()
                                                                 .AddDomainAppInfrastructure()
                                                                 .BuildServiceProvider();
 

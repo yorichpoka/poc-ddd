@@ -42,7 +42,8 @@ namespace POKA.POC.DDD.Extensions
 
             // Providers
             services
-                .AddSingleton<IAppSettingsProvider, DefaultAppSettingsProvider>();
+                .AddSingleton<IAppSettingsProvider, DefaultAppSettingsProvider>()
+                .AddScoped<ICurrentUserProvider, DefaultCurrentUserProvider>();
 
             // Sql Server
             services
