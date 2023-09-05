@@ -31,12 +31,21 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                 .IsRequired(false);
 
             builder
-                .OwnsMany(
-                    l => l.StudentCourses,
+                .OwnsMany<StudentCourseEntity>(
+                    "_studentCourses",
                     navigationBuilder =>
                     {
                         navigationBuilder
-                            .Metadata.PrincipalToDependent.SetField("_studentCourses");
+                            .ToTable("StudentCourse", "dbo");
+
+                        navigationBuilder
+                            .Property(l => l.Id)
+                            .HasColumnName("Id")
+                            .HasConversion(
+                                value => value.Value,
+                                dbValue => dbValue.ToObjectId<StudentCourseId>()
+                            )
+                            .IsRequired();
 
                         navigationBuilder
                             .WithOwner()
@@ -45,6 +54,10 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                         navigationBuilder
                             .Property(l => l.CourseId)
                             .HasColumnName("CourseId")
+                            .HasConversion(
+                                value => value.Value,
+                                dbValue => dbValue.ToObjectId<CourseId>()
+                            )
                             .IsRequired();
                     }
                 );
