@@ -62,5 +62,37 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
             ApplyUncommittedDomainEvent(domainEvent);
         }
+
+        public void ChangeAddress(Address address, UserId? authorId = null)
+        {
+            if (address == null)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(address));
+            }
+
+            if (address.Country == null)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(address.Country));
+            }
+
+            if (address.Line1.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(address.Line1));
+            }
+
+            if (address.PostalCode.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(address.PostalCode));
+            }
+
+            if (address.City.HasValue() == false)
+            {
+                throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(address.City));
+            }
+
+            var domainEvent = new StudentAddressChanged(this.Id, this.Version + 1, address, authorId);
+
+            ApplyUncommittedDomainEvent(domainEvent);
+        }
     }
 }

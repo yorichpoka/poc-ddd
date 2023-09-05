@@ -17,11 +17,15 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
                 case StudentEnrolledToCourse e:
                     var studentCourseEntity = new StudentCourseEntity(this.Id, e.CourseId);
-
                     this._studentCourses.Add(studentCourseEntity);
+                    break;
 
-                    this.LastUpdatedOn = e.On;
-                    this.Version = e.Version;
+                #endregion
+
+                #region StudentAddressChanged
+
+                case StudentAddressChanged e:
+                    this.Address = e.Address;
                     break;
 
                 #endregion
@@ -34,10 +38,8 @@ namespace POKA.POC.DDD.Domain.Aggregates
                     this.LastName = e.LastName;
                     this.Address = e.Address;
                     this.BornOn = e.BornOn;
-                    this.Email = e.Email;
-
-                    this.Version = e.Version;
                     this.CreatedOn = e.On;
+                    this.Email = e.Email;
                     this.Id = e.Id;
                     break;
 
@@ -46,6 +48,9 @@ namespace POKA.POC.DDD.Domain.Aggregates
                 default:
                     throw new AppException(AppErrorEnum.NotImplemented, nameof(ApplyDomainEventImplementation));
             }
+
+            this.LastUpdatedOn = domainEvent.On;
+            this.Version = domainEvent.Version;
         }
 
         public override void Snapshot()
