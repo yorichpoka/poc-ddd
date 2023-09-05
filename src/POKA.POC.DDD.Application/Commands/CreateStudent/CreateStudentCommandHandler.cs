@@ -36,9 +36,13 @@ namespace POKA.POC.DDD.Extensions.Commands
                                             email: request.Email
                                         );
 
+            await this._masterDbRepository.BeginTransactionAsync(cancellationToken);
+
             await this._masterDbRepository.Students.CreateAsync(studentAggregate, cancellationToken);
 
             await this._mediator.PublishAndCommitDomainEventAsync(studentAggregate, cancellationToken);
+
+            await this._masterDbRepository.CommitTransactionAsync(cancellationToken);
 
             return studentAggregate.Id;
         }
