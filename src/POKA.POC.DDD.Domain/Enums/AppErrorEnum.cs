@@ -25,6 +25,9 @@
         [Description("Email already taken.")]
         ConflictEmailTaken = 4000005,
 
+        [Description("Student enrolled to course yet")]
+        StudentEnrolledToCourseYet = 4000006,
+
         #endregion
 
         #region 401
@@ -45,6 +48,12 @@
 
         [Description("Not found")]
         NotFound = 4040000,
+
+        [Description("Student not found.")]
+        StudentNotFound = 4040001,
+
+        [Description("Course not found.")]
+        CourseNotFound = 4040002,
 
         #endregion
 
