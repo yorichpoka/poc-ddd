@@ -50,6 +50,14 @@ namespace POKA.POC.DDD.Domain.Aggregates
                 throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(courseId));
             }
 
+            var doesStudentAlreadyEnrolled =    this.GetStudentCourses()
+                                                    .Any(l => l.CourseId == courseId);
+
+            if (doesStudentAlreadyEnrolled)
+            {
+                throw new AppException(AppErrorEnum.StudentEnrolledToCourseYet, this.Id.ToString(), courseId.ToString());
+            }
+
             var domainEvent = new StudentEnrolledToCourse(this.Id, this.Version + 1, courseId, authorId);
 
             ApplyUncommittedDomainEvent(domainEvent);
