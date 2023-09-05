@@ -17,7 +17,7 @@ namespace POKA.POC.DDD.Extensions.Commands
 
         public async Task<StudentId> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
-            if (request.Email.HasValue() == false)
+            if (request.Email.HasValue())
             {
                 var doesStudentEmailTaken = await this._masterDbRepository.Students.AnyAsync(l => l.Email == request.Email, cancellationToken);
 
