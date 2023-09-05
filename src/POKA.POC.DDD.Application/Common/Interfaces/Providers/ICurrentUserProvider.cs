@@ -6,5 +6,6 @@
         string? FirstName { get; }
         string? LastName { get; }
         string? Email { get; }
+        bool IsAuthenticated { get; }
     }
 }
