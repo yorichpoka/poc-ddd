@@ -1,9 +1,10 @@
 ﻿using POKA.POC.DDD.Domain.ValueObjects;
+using POKA.POC.DDD.Domain.Interfaces;
 using POKA.POC.DDD.Domain.Entities;
 
 namespace POKA.POC.DDD.Domain.Aggregates
 {
-    public partial class StudentAggregate : AggregateRoot<StudentId>
+    public partial class StudentAggregate : AggregateRoot<StudentId>, IHasAddress
     {
         private HashSet<StudentCourseEntity> _studentCourses = new();
 
