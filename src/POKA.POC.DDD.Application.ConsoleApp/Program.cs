@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using POKA.POC.DDD.Application.Interfaces;
 using POKA.POC.DDD.Extensions.Commands;
 
 namespace POKA.POC.DDD.Application.ConsoleApp
@@ -15,7 +16,10 @@ namespace POKA.POC.DDD.Application.ConsoleApp
 
         public static async Task Main(string[] args)
         {
+            var boostrapperService = ServiceProvider.GetRequiredService<IBoostrapperService>();
             var mediator = ServiceProvider.GetRequiredService<IMediator>();
+
+            boostrapperService.Startup();
 
             Console.WriteLine(
                 @"
