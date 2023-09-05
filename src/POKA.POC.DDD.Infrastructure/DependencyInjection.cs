@@ -2,6 +2,7 @@
 using POKA.POC.DDD.Infrastructure.Persistence.SqlServer.DbContexts;
 using Microsoft.Extensions.DependencyInjection;
 using POKA.POC.DDD.Infrastructure.Providers;
+using POKA.POC.DDD.Infrastructure.Services;
 using System.Reflection;
 
 namespace POKA.POC.DDD.Extensions
@@ -44,6 +45,10 @@ namespace POKA.POC.DDD.Extensions
             services
                 .AddSingleton<IAppSettingsProvider, DefaultAppSettingsProvider>()
                 .AddScoped<ICurrentUserProvider, DefaultCurrentUserProvider>();
+
+            // Services
+            services
+                .AddSingleton<IBoostrapperService, BoostrapperService>();
 
             // Sql Server
             services
