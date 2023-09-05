@@ -11,6 +11,7 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) =>
             modelBuilder
+                .ApplyConfiguration(new StudentAggregateEntityTypeConfiguration())
                 .ApplyConfiguration(new CourseEntityTypeConfiguration())
                 .ApplyConfiguration(new ExamEntityTypeConfiguration())
             ;
