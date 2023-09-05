@@ -25,6 +25,25 @@ namespace POKA.POC.DDD.Extensions
             return builder;
         }
 
+        public static EntityTypeBuilder<TEntity> ConfigureAggregate<TEntity, TObjectId>(this EntityTypeBuilder<TEntity> builder, string tableName, string schemaName)
+            where TEntity : AggregateRoot<TObjectId>
+            where TObjectId : BaseObjectId
+        {
+            builder
+                .ConfigureBaseEntity<TEntity, TObjectId>(tableName, schemaName)
+                .ConfigureHasCreatedByUserId()
+                .ConfigureHasCreatedOn()
+                .ConfigureHasVersion();
+
+
+            builder
+                .Property(l => l.LastUpdatedOn)
+                .HasColumnName("LastUpdatedOn")
+                .IsRequired(false);
+
+            return builder;
+        }
+
         public static EntityTypeBuilder<TEntity> ConfigureHasCreatedByUserId<TEntity>(this EntityTypeBuilder<TEntity> builder)
             where TEntity : class, IHasCreatedByUserId
         {
