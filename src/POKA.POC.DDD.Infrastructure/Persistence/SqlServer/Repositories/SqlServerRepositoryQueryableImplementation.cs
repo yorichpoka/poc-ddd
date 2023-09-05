@@ -27,6 +27,7 @@
 
         public Task<List<TDestination>> GetMappedAsync<TDestination>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default) =>
             this._dbSet
+                .AsNoTracking()
                 .Where(predicate)
                 .Select(projection)
                 .ToListAsync(cancellationToken);
