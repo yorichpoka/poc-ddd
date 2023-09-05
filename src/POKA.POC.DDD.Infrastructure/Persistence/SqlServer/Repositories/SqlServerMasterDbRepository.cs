@@ -25,6 +25,7 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.Repositories
             SqlMasterDbContext dbContext
         )
         {
+            _dbContext = dbContext;
             _students = students;
             _courses = course;
             _exams = exams;
