@@ -12,13 +12,13 @@
             _dbContext = dbContext;
         }
 
-        public async Task<TDestination> FirstOrDefaultMappedAsync<TDestination>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default) =>
+        public async Task<TDestination?> FirstOrDefaultMappedAsync<TDestination>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default) =>
             (
                 await this.GetMappedAsync(predicate, projection, cancellationToken)
             )
             .FirstOrDefault();
 
-        public async Task<TDestination> FirstOrDefaultMappedAsync<TDestination>(Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default) =>
+        public async Task<TDestination?> FirstOrDefaultMappedAsync<TDestination>(Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default) =>
         (
                 await this.GetMappedAsync(l => true, projection, cancellationToken)
             )
@@ -64,7 +64,7 @@
         }
 
 
-        public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>>? predicate = null, CancellationToken cancellationToken = default) =>
+        public async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>>? predicate = null, CancellationToken cancellationToken = default) =>
             (
                 await this.GetAsync(predicate ?? (l => true), cancellationToken)
             ).FirstOrDefault();
