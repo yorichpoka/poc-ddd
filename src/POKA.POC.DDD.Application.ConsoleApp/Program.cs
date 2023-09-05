@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using POKA.POC.DDD.Infrastructure.Providers;
 using POKA.POC.DDD.Extensions.Commands;
 
 namespace POKA.POC.DDD.Application.ConsoleApp
