@@ -11,7 +11,7 @@ namespace POKA.POC.DDD.Domain.ValueObjects
         public string? Line2 { get; private set; }
         public string? State { get; private set; }
 
-        public Address()
+        private Address()
         {
         }
 
