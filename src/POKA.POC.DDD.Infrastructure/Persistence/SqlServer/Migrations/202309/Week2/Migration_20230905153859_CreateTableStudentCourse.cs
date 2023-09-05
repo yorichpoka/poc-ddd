@@ -30,7 +30,7 @@ namespace Edonys.JoyBiiz.Infrastructure.Persistence.Migrations
                         .AsGuid()
                         .NotNullable()
                         .ForeignKey(
-                            foreignKeyName: "FK_Student_StudentCourse",
+                            foreignKeyName: "FK_Course_StudentCourse",
                             primaryTableSchema: "dbo",
                             primaryTableName: "Course",
                             primaryColumnName: "Id"
