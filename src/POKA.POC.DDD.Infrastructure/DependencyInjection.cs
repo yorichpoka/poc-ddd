@@ -48,7 +48,7 @@ namespace POKA.POC.DDD.Extensions
 
             // Services
             services
-                .AddSingleton<IBoostrapperService, BoostrapperService>();
+                .AddScoped<IBoostrapperService, BoostrapperService>();
 
             // Sql Server
             services
