@@ -86,6 +86,8 @@
             query.ToListAsync(cancellationToken);
 
         public IQueryable<TEntity> AsQueryable() =>
-            this._dbSet.AsQueryable();
+            this._dbSet
+                .AsNoTracking()
+                .AsQueryable();
     }
 }
