@@ -70,7 +70,7 @@
             ).FirstOrDefault();
 
         public Task<List<TEntity>> GetAsync(Expression<Func<TEntity, bool>>? predicate = null, CancellationToken cancellationToken = default) =>
-            this.GetMappedAsync(predicate, l => l, cancellationToken);
+            this.GetMappedAsync(predicate ?? (l => true), l => l, cancellationToken);
 
 
         public Task<bool> AnyAsync(Expression<Func<TEntity, bool>>? predicate = null, CancellationToken cancellationToken = default) =>
