@@ -7,5 +7,6 @@ namespace POKA.POC.DDD.Domain.Interfaces
     {
         void AssignId(TObjectId id);
         string GetStreamName();
+        DateTime On { get; }
     }
 }
