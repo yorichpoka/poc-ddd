@@ -6,9 +6,9 @@ namespace POKA.POC.DDD.Infrastructure.Services
     public class BoostrapperService : IBoostrapperService
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly ILogger _logger;
+        private readonly ILogger<BoostrapperService> _logger;
 
-        public BoostrapperService(IServiceProvider serviceProvider, ILogger logger)
+        public BoostrapperService(IServiceProvider serviceProvider, ILogger<BoostrapperService> logger)
         {
             _serviceProvider = serviceProvider;
             _logger = logger;
