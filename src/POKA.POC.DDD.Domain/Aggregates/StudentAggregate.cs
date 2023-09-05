@@ -7,6 +7,9 @@ namespace POKA.POC.DDD.Domain.Aggregates
     public partial class StudentAggregate : AggregateRoot<StudentId>, IHasAddress
     {
         private HashSet<StudentCourseEntity> _studentCourses = new();
+        public ReadOnlyCollection<StudentCourseEntity> StudentCourses =>    this._studentCourses
+                                                                                .ToList()
+                                                                                .AsReadOnly();
 
         public string FirstName { get; protected set; } = null!;
         public string LastName { get; protected set; } = null!;
