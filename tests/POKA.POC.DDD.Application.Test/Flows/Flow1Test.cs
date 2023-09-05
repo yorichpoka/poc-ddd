@@ -4,9 +4,9 @@ using POKA.POC.DDD.Extensions.Commands;
 using POKA.POC.DDD.Domain.ValueObjects;
 using MediatR;
 
-namespace POKA.POC.DDD.Application.Test.Commands
+namespace POKA.POC.DDD.Application.Test.Flows
 {
-    public class CreateStudentCommandTest : BaseTest
+    public class Flow1Test : BaseTest
     {
         [Fact]
         public void CanCreateStudent()
