@@ -25,6 +25,7 @@ namespace POKA.POC.DDD.Domain.Entities
                 throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(courseId));
             }
 
+            Id = BaseObjectId.Create<StudentCourseId>();
             StudentId = studentId;
             CourseId = courseId;
         }
