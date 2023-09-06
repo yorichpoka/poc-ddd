@@ -28,6 +28,9 @@
         [Description("Student enrolled to course yet")]
         StudentEnrolledToCourseYet = 4000006,
 
+        [Description("Student age invalid")]
+        StudentAgeInvalid = 4000007,
+
         #endregion
 
         #region 401
