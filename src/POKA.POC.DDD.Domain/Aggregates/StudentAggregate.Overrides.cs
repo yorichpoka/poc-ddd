@@ -22,6 +22,14 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
                 #endregion
 
+                #region StudentBirthdateChanged
+
+                case StudentBirthdateChanged e:
+                    this.BornOn = e.BornOn;
+                    break;
+
+                #endregion
+
                 #region StudentAddressChanged
 
                 case StudentAddressChanged e:
