@@ -16,7 +16,8 @@ namespace POKA.POC.DDD.Application.Test.Flows
             var masterDbRepository = ServiceProvider.GetRequiredService<IMasterDbRepository>();
             var mediator = ServiceProvider.GetRequiredService<IMediator>();
             var students = masterDbRepository.Students.GetAsync().Result;
-            var address = new Address(CountryEnum.Luxembourg, "Luxembourg", "90 Rue de Beggen", "1221");
+            var studentAddress = new Address(CountryEnum.Luxembourg, "Luxembourg", "90 Rue de Beggen", "1221");
+            var studentBirthdate = new DateTime(2000, 1, 1);
             var studentId = default(StudentId);
             var courseId = masterDbRepository.Courses.FirstOrDefaultMappedAsync(l => l.Id).Result;
 
@@ -41,7 +42,15 @@ namespace POKA.POC.DDD.Application.Test.Flows
 
             // Change student's address
             {
-                var command = new ChangeStudentAddressCommand(studentId, address);
+                var command = new ChangeStudentAddressCommand(studentId, studentAddress);
+                mediator
+                    .Send(command)
+                    .Wait();
+            }
+
+            // Change student's birthdate
+            {
+                var command = new ChangeStudentBirthdateCommand(studentId, studentBirthdate);
                 mediator
                     .Send(command)
                     .Wait();
