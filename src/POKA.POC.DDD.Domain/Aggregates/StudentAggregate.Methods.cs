@@ -95,7 +95,7 @@ namespace POKA.POC.DDD.Domain.Aggregates
             ApplyUncommittedDomainEvent(domainEvent);
         }
 
-        public void Changebirthdate(DateTime bornOn, UserId? authorId = null)
+        public void ChangeBirthdate(DateTime bornOn, UserId? authorId = null)
         {
             if (bornOn >= DateTime.UtcNow)
             {
