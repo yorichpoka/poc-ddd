@@ -43,11 +43,11 @@ namespace POKA.POC.DDD.Extensions.Commands
             studentAggregate.EnrolTheCourse(request.CourseId, this._currentUserProvider.Id);
 
             await this._masterDbRepository.BeginTransactionAsync(cancellationToken);
+            {
+                await this._masterDbRepository.Students.UpdateAsync(studentAggregate.Id, studentAggregate, cancellationToken);
 
-            await this._masterDbRepository.Students.UpdateAsync(studentAggregate.Id, studentAggregate, cancellationToken);
-
-            await this._mediator.PublishAndCommitDomainEventAsync(studentAggregate, cancellationToken);
-
+                await this._mediator.PublishAndCommitDomainEventAsync(studentAggregate, cancellationToken);
+            }
             await this._masterDbRepository.CommitTransactionAsync(cancellationToken);
 
             return Unit.Value;
