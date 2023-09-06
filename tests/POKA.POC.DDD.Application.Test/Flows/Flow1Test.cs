@@ -25,37 +25,37 @@ namespace POKA.POC.DDD.Application.Test.Flows
             masterDbRepository
                 .BeginTransactionAsync()
                 .Wait();
-
-            // Create student
             {
-                var command = new CreateStudentCommand("John", "DOE", "john.doe@poka.lu");
-                studentId = mediator.Send(command).Result;
-            }
+                // Create student
+                {
+                    var command = new CreateStudentCommand("John", "DOE", "john.doe@poka.lu");
+                    studentId = mediator.Send(command).Result;
+                }
 
-            // Enroll student to course
-            {
-                var command = new EnrollStudentToCourseCommand(studentId, courseId);
-                mediator
-                    .Send(command)
-                    .Wait();
-            }
+                // Enroll student to course
+                {
+                    var command = new EnrollStudentToCourseCommand(studentId, courseId);
+                    mediator
+                        .Send(command)
+                        .Wait();
+                }
 
-            // Change student's address
-            {
-                var command = new ChangeStudentAddressCommand(studentId, studentAddress);
-                mediator
-                    .Send(command)
-                    .Wait();
-            }
+                // Change student's address
+                {
+                    var command = new ChangeStudentAddressCommand(studentId, studentAddress);
+                    mediator
+                        .Send(command)
+                        .Wait();
+                }
 
-            // Change student's birthdate
-            {
-                var command = new ChangeStudentBirthdateCommand(studentId, studentBirthdate);
-                mediator
-                    .Send(command)
-                    .Wait();
+                // Change student's birthdate
+                {
+                    var command = new ChangeStudentBirthdateCommand(studentId, studentBirthdate);
+                    mediator
+                        .Send(command)
+                        .Wait();
+                }
             }
-
             masterDbRepository
                 .CommitTransactionAsync()
                 .Wait();
