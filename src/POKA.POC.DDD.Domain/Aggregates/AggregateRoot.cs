@@ -31,6 +31,11 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
         private void ApplyDomainEventInternal(IDomainEvent<TObjectId> domainEvent, bool committed = false)
         {
+            if (this.IsChanged == false)
+            {
+                this.BeginChanges();
+            }
+
             ApplyDomainEventImplementation(domainEvent);
 
             if (committed)
