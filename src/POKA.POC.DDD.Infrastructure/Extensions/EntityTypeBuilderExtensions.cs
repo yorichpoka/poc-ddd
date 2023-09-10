@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using POKA.POC.DDD.Domain.Helpers;
 
 namespace POKA.POC.DDD.Extensions
 {
@@ -10,6 +11,11 @@ namespace POKA.POC.DDD.Extensions
         {
             builder
                 .ToTable(tableName, schemaName);
+
+            builder
+                .Ignore(nameof(ChangeTracker.PropertyChanged))
+                .Ignore(nameof(ChangeTracker.IsTracking))
+                .Ignore(nameof(ChangeTracker.IsChanged));
 
             builder
                 .HasKey(e => e.Id);
@@ -34,7 +40,6 @@ namespace POKA.POC.DDD.Extensions
                 .ConfigureHasCreatedByUserId()
                 .ConfigureHasCreatedOn()
                 .ConfigureHasVersion();
-
 
             builder
                 .Property(l => l.LastUpdatedOn)
