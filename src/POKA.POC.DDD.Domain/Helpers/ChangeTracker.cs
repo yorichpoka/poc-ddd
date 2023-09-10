@@ -6,19 +6,24 @@
 //    Description: Handles general utility functions
 // ============================================================================
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace POKA.POC.DDD.Domain.Helpers
 {
     public abstract class ChangeTracker : INotifyPropertyChanged, IRevertibleChangeTracking
     {
+        [NotMapped]
         protected Dictionary<string, ITrackedChange> Tracked { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public bool IsTracking { get { return Tracked.Count > 0; } }
+        private bool _isChanged = false;
 
         /// <summary>
         /// Gets the objects changed status
         /// </summary>
         /// <returns><see langword="true"/> if the objects content has changed since either <see cref="BeginChanges"/>
         /// was called, or since <see cref="AcceptChanges"/> was last called; <see langword="false"/> otherwise</returns>
+        [NotMapped]
         public bool IsChanged
         {
             get
@@ -38,7 +43,6 @@ namespace POKA.POC.DDD.Domain.Helpers
                 _isChanged = value;
             }
         }
-        private bool _isChanged = false;
 
         protected ChangeTracker()
         {
