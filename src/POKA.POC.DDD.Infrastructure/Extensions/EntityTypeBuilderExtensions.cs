@@ -44,7 +44,7 @@ namespace POKA.POC.DDD.Extensions
             builder
                 .Property(l => l.LastUpdatedOn)
                 .HasColumnName("LastUpdatedOn")
-                .IsRequired(false);
+                .IsRequired();
 
             return builder;
         }
