@@ -1,10 +1,17 @@
 ﻿using POKA.POC.DDD.Domain.Interfaces;
+using POKA.POC.DDD.Domain.Helpers;
 
 namespace POKA.POC.DDD.Domain.Entities
 {
-    public abstract class BaseEntity<TObjectId> : IEntity where TObjectId : class, IObjectId
+    public abstract class BaseEntity<TObjectId> : ChangeTracker, IEntity 
+        where TObjectId : class, IObjectId
     {
         public TObjectId Id { get; protected set; } = null!;
+
+        protected BaseEntity()
+        {
+            this.BeginChanges();
+        }
 
         public override bool Equals(object obj)
         {
