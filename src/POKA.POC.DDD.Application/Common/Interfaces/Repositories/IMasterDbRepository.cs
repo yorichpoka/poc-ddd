@@ -1,6 +1,4 @@
-﻿using POKA.POC.DDD.Domain.Entities;
-
-namespace POKA.POC.DDD.Application.Interfaces
+﻿namespace POKA.POC.DDD.Application.Interfaces
 {
     public interface IMasterDbRepository : IUnitOfWork
     {

@@ -1,5 +1,4 @@
 ﻿using POKA.POC.DDD.Domain.Exceptions;
-using System.Reflection;
 
 namespace POKA.POC.DDD.Domain.Enums
 {

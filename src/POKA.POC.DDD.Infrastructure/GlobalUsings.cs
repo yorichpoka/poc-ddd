@@ -9,5 +9,7 @@ global using POKA.POC.DDD.Domain.Entities;
 global using POKA.POC.DDD.Domain.Enums;
 global using POKA.POC.DDD.Extensions;
 global using System.Linq.Expressions;
+global using POKA.POC.DDD.Domain;
 global using FluentValidation;
+global using Newtonsoft.Json;
 global using MediatR;
