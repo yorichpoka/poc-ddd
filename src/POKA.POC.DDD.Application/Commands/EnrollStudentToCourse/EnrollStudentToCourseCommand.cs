@@ -1,6 +1,6 @@
 ﻿namespace POKA.POC.DDD.Extensions.Commands
 {
-    public class EnrollStudentToCourseCommand : ICommand
+    public record EnrollStudentToCourseCommand : ICommand
     {
         public StudentId StudentId { get; private set; } = null!;
         public CourseId CourseId { get; private set; } = null!;
