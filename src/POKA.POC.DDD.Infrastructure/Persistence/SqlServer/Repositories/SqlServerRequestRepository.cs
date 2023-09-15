@@ -80,7 +80,7 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.Repositories
             await this._dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateAsync(Guid requestId, RequestEntity request, CancellationToken cancellationToken = default) =>
+        public async Task UpdateAsync(RequestId requestId, RequestEntity request, CancellationToken cancellationToken = default) =>
             await this._dbContext.SaveChangesAsync(cancellationToken);
     }
 }
