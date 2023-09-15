@@ -21,6 +21,13 @@ namespace POKA.POC.DDD.Extensions
                         var appSettingsProvider = serviceProvider.GetRequiredService<IAppSettingsProvider>();
                         optionsBuilder.UseSqlServer(appSettingsProvider.SqlDbConnectionString);
                     }
+                )
+                .AddDbContext<SqlEventStoreDbContext>(
+                    (serviceProvider, optionsBuilder) =>
+                    {
+                        var appSettingsProvider = serviceProvider.GetRequiredService<IAppSettingsProvider>();
+                        optionsBuilder.UseSqlServer(appSettingsProvider.SqlDbConnectionString);
+                    }
                 );
 
             // FluentValidation
