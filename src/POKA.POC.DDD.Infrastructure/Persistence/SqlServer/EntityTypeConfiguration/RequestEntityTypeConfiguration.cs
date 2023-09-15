@@ -47,6 +47,16 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                 .IsRequired();
 
             builder
+                .Property(l => l.ScopeId)
+                .HasColumnName("ScopeId")
+                .HasMaxLength(100)
+                .HasConversion(
+                    value => value.Value,
+                    dbValue => new RequestScopeId(dbValue)
+                )
+                .IsRequired();
+
+            builder
                 .Property(l => l.UserId)
                 .HasColumnName("UserId")
                 .HasMaxLength(100)
@@ -63,16 +73,6 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                 .HasConversion(
                     value => value.Value,
                     dbValue => new RequestId(dbValue)
-                )
-                .IsRequired(false);
-
-            builder
-                .Property(l => l.ScopeId)
-                .HasColumnName("ScopeId")
-                .HasMaxLength(100)
-                .HasConversion(
-                    value => value.Value,
-                    dbValue => new RequestScopeId(dbValue)
                 )
                 .IsRequired(false);
 
