@@ -12,19 +12,16 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
             builder
                 .Property(l => l.AggregateId)
                 .HasColumnName("AggregateId")
-                .HasMaxLength(250)
                 .IsRequired();
 
             builder
                 .Property(l => l.AggregateType)
                 .HasColumnName("AggregateType")
-                .HasMaxLength(250)
                 .IsRequired();
 
             builder
                 .Property(l => l.Type)
                 .HasColumnName("Type")
-                .HasMaxLength(250)
                 .IsRequired();
 
             builder
@@ -35,7 +32,6 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
             builder
                 .Property(l => l.Data)
                 .HasColumnName("Data")
-                .HasMaxLength(2000)
                 .IsRequired();
 
             builder
