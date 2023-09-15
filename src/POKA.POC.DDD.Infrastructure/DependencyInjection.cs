@@ -64,7 +64,8 @@ namespace POKA.POC.DDD.Extensions
             services
                 .AddScoped(typeof(IDbSetRepository<>), typeof(SqlServerDbSetRepository<>))
                 .AddScoped<IMasterDbRepository, SqlServerMasterDbRepository>()
-                .AddScoped<IRequestRepository, SqlServerRequestRepository>();
+                .AddScoped<IRequestRepository, SqlServerRequestRepository>()
+                .AddScoped<IEventStoreRepository, SqlEventStoreRepository>();
             
             // ILogger<>
             services
