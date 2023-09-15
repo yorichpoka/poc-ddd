@@ -99,15 +99,13 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.Repositories
             var eventEntities = aggregate
                                     .GetUncommittedDomainEvents()
                                     .Select(
-                                        l => new EventEntity
-                                        {
-                                            Data = JsonConvert.SerializeObject(l, Constants.DefaultJsonSerializerSettings),
-                                            CreatedOn = DateTime.UtcNow,
-                                            AggregateType = aggregate.GetType().Name,
-                                            AggregateId = aggregate.Id.Value.ToString(),
-                                            Type = l.GetType().Name,
-                                            Version = l.Version
-                                        }
+                                        l => new EventEntity(
+                                            data: JsonConvert.SerializeObject(l, Constants.DefaultJsonSerializerSettings),
+                                            aggregateType : aggregate.GetType().Name,
+                                            aggregateId: aggregate.Id.Value.ToString(),
+                                            type: l.GetType().Name,
+                                            version: l.Version
+                                        )
                                     )
                                     .ToList();
 
