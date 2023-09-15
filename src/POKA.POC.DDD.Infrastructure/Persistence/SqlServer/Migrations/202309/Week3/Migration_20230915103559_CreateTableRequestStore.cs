@@ -36,6 +36,9 @@ namespace Edonys.JoyBiiz.Infrastructure.Persistence.Migrations
                         .AsDateTime2()
                         .NotNullable()
                         .WithDefault(SystemMethods.CurrentUTCDateTime)
+                    .WithColumn("ScopeId")
+                        .AsGuid()
+                        .NotNullable()
                     // Nullable
                     .WithColumn("Duration")
                         .AsTime()
