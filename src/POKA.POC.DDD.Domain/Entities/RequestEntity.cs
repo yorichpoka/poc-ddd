@@ -1,13 +1,13 @@
-﻿using POKA.POC.DDD.Domain.Enums;
+﻿using POKA.POC.DDD.Domain.ValueObjects;
+using POKA.POC.DDD.Domain.Enums;
 
 namespace POKA.POC.DDD.Domain.Entities
 {
-    public class RequestEntity
+    public class RequestEntity : BaseEntity<RequestId>
     {
-        public Guid Id { get; private set; }
-        public Guid? ParentId { get; private set; }
-        public Guid? ScopeId { get; private set; }
-        public long? SequentialUserId { get; private set; }
+        public RequestId? ParentId { get; private set; }
+        public RequestScopeId? ScopeId { get; private set; }
+        public UserId? UserId { get; private set; }
         public string ApplicationPerformer { get; private set; } = null!;
         public RequestStatusEnum Status { get; private set; } = null!;
         public RequestTypeEnum? Type { get; private set; }
@@ -17,22 +17,22 @@ namespace POKA.POC.DDD.Domain.Entities
         public DateTime CreatedOn { get; private set; }
         public TimeSpan? Duration { get; private set; }
 
-        public RequestEntity()
+        private RequestEntity()
         {
         }
 
-        public RequestEntity(Guid id)
+        public RequestEntity(RequestId id)
         {
             Id = id;
         }
 
-        public RequestEntity(Guid? scopeId, long? sequentialUserId, string applicationPerformer, RequestStatusEnum status, string name, string data, DateTime createdOn, Guid? parentId = null)
+        public RequestEntity(RequestScopeId? scopeId, UserId? userId, string applicationPerformer, RequestStatusEnum status, string name, string data, DateTime createdOn, RequestId? parentId = null)
         {
             ApplicationPerformer = applicationPerformer;
-            SequentialUserId = sequentialUserId;
             CreatedOn = createdOn;
             ParentId = parentId;
             ScopeId = scopeId;
+            UserId = userId;
             Duration = null;
             Status = status;
             Error = null;
