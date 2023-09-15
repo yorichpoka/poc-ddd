@@ -4,12 +4,19 @@ namespace POKA.POC.DDD.Extensions.Commands
 {
     public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, StudentId>
     {
+        private readonly IEventStoreRepository _eventStoreRepository;
         private readonly ICurrentUserProvider _currentUserProvider;
         private readonly IMasterDbRepository _masterDbRepository;
         private readonly IMediator _mediator;
 
-        public CreateStudentCommandHandler(ICurrentUserProvider currentUserProvider, IMasterDbRepository masterDbRepository, IMediator mediator)
+        public CreateStudentCommandHandler(
+            IEventStoreRepository eventStoreRepository, 
+            ICurrentUserProvider currentUserProvider, 
+            IMasterDbRepository masterDbRepository, 
+            IMediator mediator
+        )
         {
+            _eventStoreRepository = eventStoreRepository;
             _currentUserProvider = currentUserProvider;
             _masterDbRepository = masterDbRepository;
             _mediator = mediator;
@@ -39,7 +46,7 @@ namespace POKA.POC.DDD.Extensions.Commands
             await this._masterDbRepository.BeginTransactionAsync(cancellationToken);
             {
                 await this._masterDbRepository.Students.CreateAsync(studentAggregate, cancellationToken);
-
+                await this._eventStoreRepository.SaveFromAggregateAsync(studentAggregate, cancellationToken);
                 await this._mediator.PublishAndCommitDomainEventAsync(studentAggregate, cancellationToken);
             }
             await this._masterDbRepository.CommitTransactionAsync(cancellationToken);
