@@ -6,7 +6,7 @@ namespace POKA.POC.DDD.Domain.Entities
     public class RequestEntity : BaseEntity<RequestId>
     {
         public RequestId? ParentId { get; private set; }
-        public RequestScopeId? ScopeId { get; private set; }
+        public RequestScopeId ScopeId { get; private set; }
         public UserId? UserId { get; private set; }
         public string ApplicationPerformer { get; private set; } = null!;
         public RequestStatusEnum Status { get; private set; } = null!;
@@ -26,7 +26,7 @@ namespace POKA.POC.DDD.Domain.Entities
             Id = id;
         }
 
-        public RequestEntity(RequestScopeId? scopeId, UserId? userId, string applicationPerformer, RequestStatusEnum status, string name, string data, DateTime createdOn, RequestId? parentId = null)
+        public RequestEntity(RequestScopeId scopeId, UserId? userId, string applicationPerformer, RequestStatusEnum status, string name, string data, DateTime createdOn, RequestId? parentId = null)
         {
             ApplicationPerformer = applicationPerformer;
             Id = BaseObjectId.Create<RequestId>();

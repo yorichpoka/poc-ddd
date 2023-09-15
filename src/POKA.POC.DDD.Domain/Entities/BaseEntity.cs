@@ -8,11 +8,6 @@ namespace POKA.POC.DDD.Domain.Entities
     {
         public TObjectId Id { get; protected set; } = null!;
 
-        protected BaseEntity()
-        {
-            this.BeginChanges();
-        }
-
         public override bool Equals(object obj)
         {
             var compareTo = obj as BaseEntity<TObjectId>;
