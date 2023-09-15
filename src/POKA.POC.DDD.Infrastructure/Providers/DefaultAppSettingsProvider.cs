@@ -11,6 +11,8 @@
 
         public EnvironmentEnum EnvironmentName => EnvironmentEnum.FromValue(this._configuration.GetValue<string>("EnvironmentName"));
 
-        public string SqlDbConnectionString => this._configuration.GetValue<string>("ConnectionStrings:SqlServer"); 
+        public string SqlDbConnectionString => this._configuration.GetValue<string>("ConnectionStrings:SqlServer");
+
+        public string ApplicationName => this._configuration.GetValue<string>("ApplicationName");
     }
 }

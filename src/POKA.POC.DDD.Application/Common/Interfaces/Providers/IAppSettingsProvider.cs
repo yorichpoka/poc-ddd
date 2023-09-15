@@ -4,5 +4,6 @@
     {
         EnvironmentEnum EnvironmentName { get; }
         string SqlDbConnectionString { get; }
+        string ApplicationName { get; }
     }
 }
