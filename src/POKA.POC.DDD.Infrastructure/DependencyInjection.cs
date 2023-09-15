@@ -50,12 +50,13 @@ namespace POKA.POC.DDD.Extensions
             services
                 .AddScoped<IStudentValidationService, StudentValidationService>()
                 .AddScoped<IBoostrapperService, BoostrapperService>();
-            
+
             // Sql Server
             services
                 .AddScoped(typeof(IDbSetRepository<>), typeof(SqlServerDbSetRepository<>))
-                .AddScoped<IMasterDbRepository, SqlServerMasterDbRepository>();
-
+                .AddScoped<IMasterDbRepository, SqlServerMasterDbRepository>()
+                .AddScoped<IRequestRepository, SqlServerRequestRepository>();
+            
             // ILogger<>
             services
                 .AddLogging();
