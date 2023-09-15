@@ -29,6 +29,7 @@ namespace POKA.POC.DDD.Domain.Entities
         public RequestEntity(RequestScopeId? scopeId, UserId? userId, string applicationPerformer, RequestStatusEnum status, string name, string data, DateTime createdOn, RequestId? parentId = null)
         {
             ApplicationPerformer = applicationPerformer;
+            Id = BaseObjectId.Create<RequestId>();
             CreatedOn = createdOn;
             ParentId = parentId;
             ScopeId = scopeId;

@@ -58,6 +58,9 @@
         [Description("Course not found.")]
         CourseNotFound = 4040002,
 
+        [Description("Type not found")]
+        TypeNotFound = 4040003,
+        
         #endregion
 
         #region 409
