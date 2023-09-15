@@ -34,6 +34,8 @@ namespace POKA.POC.DDD.Extensions
                     {
                         // 1.
                         config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
+                        // 2.
+                        config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(RequestStorePipelineBehavior<,>));
                         // 3.
                         config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
                         // Register all handlers
