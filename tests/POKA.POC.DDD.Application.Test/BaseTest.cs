@@ -1,13 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using POKA.POC.DDD.Application.Interfaces;
-using Microsoft.Extensions.Configuration;
-using POKA.POC.DDD.Extensions;
-
-namespace POKA.POC.DDD.Application.Test
+﻿namespace POKA.POC.DDD.Application.Test
 {
     public abstract class BaseTest
     {
-        protected IServiceProvider ServiceProvider { get; set; }
+        protected IServiceProvider ServiceProvider { get; }
         protected IConfiguration Configuration { get; }
 
         protected BaseTest()

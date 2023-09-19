@@ -1,10 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
-using POKA.POC.DDD.Application.Interfaces;
-using POKA.POC.DDD.Extensions.Commands;
-using POKA.POC.DDD.Domain.ValueObjects;
-using POKA.POC.DDD.Domain.Enums;
-using MediatR;
-
 namespace POKA.POC.DDD.Application.Test.Flows
 {
     public class Flow1Test : BaseTest

@@ -1,1 +1,9 @@
+global using Microsoft.Extensions.DependencyInjection;
+global using POKA.POC.DDD.Application.Interfaces;
+global using Microsoft.Extensions.Configuration;
+global using POKA.POC.DDD.Domain.ValueObjects;
+global using POKA.POC.DDD.Extensions.Commands;
+global using POKA.POC.DDD.Domain.Enums;
+global using POKA.POC.DDD.Extensions;
+global using MediatR;
 global using Xunit;
