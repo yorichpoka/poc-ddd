@@ -11,9 +11,6 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                 .ConfigureHasAddress();
 
             builder
-                .Ignore(l => l.StudentCourses);
-
-            builder
                 .Property(l => l.FirstName)
                 .HasColumnName("FirstName")
                 .IsRequired();
@@ -35,7 +32,7 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
 
             builder
                 .OwnsMany<StudentCourseEntity>(
-                    "_studentCourses",
+                    l => l.StudentCourses,
                     navigationBuilder =>
                     {
                         navigationBuilder
@@ -64,7 +61,6 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                             .IsRequired();
                     }
                 );
-
         }
     }
 }
