@@ -80,12 +80,18 @@
             this._dbSet
                 .AnyAsync(predicate ?? (l => true), cancellationToken);
 
-        public Task<int> CountQueryAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default) =>
-            query.CountAsync(cancellationToken);
+        public async Task<long> CountQueryAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default)
+        {
+            var result = await query.CountAsync(cancellationToken);
 
+            return result;
+        }
 
         public Task<List<T>> ExecuteQueryAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default) =>
             query.ToListAsync(cancellationToken);
+
+        public List<T> ExecuteQuery<T>(IQueryable<T> query) =>
+            query.ToList();
 
         public IQueryable<TEntity> AsQueryable() =>
             this._dbSet
