@@ -21,6 +21,13 @@ namespace POKA.POC.DDD.Extensions
                         var appSettingsProvider = serviceProvider.GetRequiredService<IAppSettingsProvider>();
                         optionsBuilder.UseSqlServer(appSettingsProvider.SqlDbConnectionString);
                     }
+                )
+                .AddDbContext<SqlEventStoreDbContext>(
+                    (serviceProvider, optionsBuilder) =>
+                    {
+                        var appSettingsProvider = serviceProvider.GetRequiredService<IAppSettingsProvider>();
+                        optionsBuilder.UseSqlServer(appSettingsProvider.SqlDbConnectionString);
+                    }
                 );
 
             // FluentValidation
@@ -34,6 +41,8 @@ namespace POKA.POC.DDD.Extensions
                     {
                         // 1.
                         config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
+                        // 2.
+                        config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(RequestStorePipelineBehavior<,>));
                         // 3.
                         config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
                         // Register all handlers
@@ -50,12 +59,14 @@ namespace POKA.POC.DDD.Extensions
             services
                 .AddScoped<IStudentValidationService, StudentValidationService>()
                 .AddScoped<IBoostrapperService, BoostrapperService>();
-            
+
             // Sql Server
             services
                 .AddScoped(typeof(IDbSetRepository<>), typeof(SqlServerDbSetRepository<>))
-                .AddScoped<IMasterDbRepository, SqlServerMasterDbRepository>();
-
+                .AddScoped<IMasterDbRepository, SqlServerMasterDbRepository>()
+                .AddScoped<IRequestRepository, SqlServerRequestRepository>()
+                .AddScoped<IEventStoreRepository, SqlEventStoreRepository>();
+            
             // ILogger<>
             services
                 .AddLogging();

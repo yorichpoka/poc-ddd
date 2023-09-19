@@ -1,6 +1,6 @@
 ﻿namespace POKA.POC.DDD.Extensions.Commands
 {
-    public class ChangeStudentBirthdateCommand : ICommand
+    public record ChangeStudentBirthdateCommand : ICommand
     {
         public StudentId StudentId { get; private set; } = null!;
         public DateTime Birthdate { get; private set; }

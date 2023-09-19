@@ -13,5 +13,10 @@ namespace POKA.POC.DDD.Domain.Aggregates
         public string? Email { get; protected set; } = null!;
         public Address? Address { get; protected set; } = null;
         public DateTime? BornOn { get; protected set; } = null;
+
+        private StudentAggregate()
+            : base()
+        {            
+        }
     }
 }

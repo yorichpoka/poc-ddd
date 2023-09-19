@@ -14,7 +14,12 @@ namespace POKA.POC.DDD.Domain.Aggregates
         public int Version { get; protected set; }
         public DateTime CreatedOn { get; protected set; }
         public UserId? CreatedByUserId { get; protected set; } = null;
-        public DateTime? LastUpdatedOn { get; protected set; } = null;
+        public DateTime LastUpdatedOn { get; protected set; }
+
+        protected AggregateRoot()
+            : base()
+        {            
+        }
 
         protected void ApplyUncommittedDomainEvent(IDomainEvent<TObjectId> domainEvent) => ApplyDomainEventInternal(domainEvent, false);
 
@@ -26,6 +31,11 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
         private void ApplyDomainEventInternal(IDomainEvent<TObjectId> domainEvent, bool committed = false)
         {
+            if (this.IsChanged == false)
+            {
+                this.BeginChanges();
+            }
+
             ApplyDomainEventImplementation(domainEvent);
 
             if (committed)
@@ -40,12 +50,14 @@ namespace POKA.POC.DDD.Domain.Aggregates
 
         public void CommitDomainEvents()
         {
-            foreach (var uncommitedDomainEvent in _uncommittedDomainEvents)
+            foreach (var uncommitedDomainEvent in this._uncommittedDomainEvents)
             {
-                _domainEvents.Add(uncommitedDomainEvent);
+                this._domainEvents.Add(uncommitedDomainEvent);
             }
 
-            _uncommittedDomainEvents.Clear();
+            this._uncommittedDomainEvents.Clear();
+
+            this.EndChanges();
         }
 
         public abstract void ApplyDomainEventImplementation(IDomainEvent<TObjectId> domainEvent);

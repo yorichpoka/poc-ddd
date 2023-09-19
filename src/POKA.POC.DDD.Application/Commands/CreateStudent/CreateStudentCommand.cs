@@ -1,6 +1,6 @@
 ﻿namespace POKA.POC.DDD.Extensions.Commands
 {
-    public class CreateStudentCommand : ICommand<StudentId>
+    public record CreateStudentCommand : ICommand<StudentId>
     {
         public string FirstName { get; private set; } = null!;
         public string LastName { get; private set; } = null!;

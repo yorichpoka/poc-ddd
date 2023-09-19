@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace POKA.POC.DDD.Extensions
+﻿namespace POKA.POC.DDD.Extensions
 {
     public static class EnumExtensions
     {
