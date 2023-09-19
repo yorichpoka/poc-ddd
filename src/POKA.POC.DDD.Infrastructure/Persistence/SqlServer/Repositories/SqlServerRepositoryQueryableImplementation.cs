@@ -19,7 +19,7 @@
             .FirstOrDefault();
 
         public async Task<TDestination?> FirstOrDefaultMappedAsync<TDestination>(Expression<Func<TEntity, TDestination>> projection, CancellationToken cancellationToken = default) =>
-        (
+            (
                 await this.GetMappedAsync(l => true, projection, cancellationToken)
             )
             .FirstOrDefault();
