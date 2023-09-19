@@ -8,11 +8,19 @@ namespace POKA.POC.DDD.Domain.Aggregates
 {
     public partial class StudentAggregate : AggregateRoot<StudentId>
     {
-        public ReadOnlyCollection<StudentCourseEntity> GetStudentCourses() => (
-            this._studentCourses
-                .ToList()
-                .AsReadOnly()
-        );
+        public ReadOnlyCollection<StudentCourseEntity> StudentCourses
+        {
+            get
+            {
+                return  this._studentCourses
+                            .ToList()
+                            .AsReadOnly();
+            }
+            private set
+            {
+                this._studentCourses = value.ToHashSet();
+            }
+        }
 
         public static StudentAggregate Create(
             string firstName, 
@@ -50,7 +58,7 @@ namespace POKA.POC.DDD.Domain.Aggregates
                 throw new AppException(AppErrorEnum.ArgumentNullPassed, nameof(courseId));
             }
 
-            var doesStudentAlreadyEnrolled =    this.GetStudentCourses()
+            var doesStudentAlreadyEnrolled =    this.StudentCourses
                                                     .Any(l => l.CourseId == courseId);
 
             if (doesStudentAlreadyEnrolled)

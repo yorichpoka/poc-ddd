@@ -11,6 +11,9 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                 .ConfigureHasAddress();
 
             builder
+                .Ignore(l => l.StudentCourses);
+
+            builder
                 .Property(l => l.FirstName)
                 .HasColumnName("FirstName")
                 .IsRequired();

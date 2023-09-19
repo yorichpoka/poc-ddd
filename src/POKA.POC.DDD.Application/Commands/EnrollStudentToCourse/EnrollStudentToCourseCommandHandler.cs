@@ -4,19 +4,12 @@ namespace POKA.POC.DDD.Extensions.Commands
 {
     public class EnrollStudentToCourseCommandHandler : IRequestHandler<EnrollStudentToCourseCommand, Unit>
     {
-        private readonly IEventStoreRepository _eventStoreRepository;
         private readonly ICurrentUserProvider _currentUserProvider;
         private readonly IMasterDbRepository _masterDbRepository;
         private readonly IMediator _mediator;
 
-        public EnrollStudentToCourseCommandHandler(
-            IEventStoreRepository eventStoreRepository, 
-            ICurrentUserProvider currentUserProvider, 
-            IMasterDbRepository masterDbRepository, 
-            IMediator mediator
-        )
+        public EnrollStudentToCourseCommandHandler(ICurrentUserProvider currentUserProvider, IMasterDbRepository masterDbRepository, IMediator mediator)
         {
-            _eventStoreRepository = eventStoreRepository;
             _currentUserProvider = currentUserProvider;
             _masterDbRepository = masterDbRepository;
             _mediator = mediator;
@@ -39,7 +32,7 @@ namespace POKA.POC.DDD.Extensions.Commands
             }
 
             var doesStudentAlreadyEnrolled = studentAggregate
-                                                .GetStudentCourses()
+                                                .StudentCourses
                                                 .Any(l => l.CourseId == request.CourseId);
 
             if (doesStudentAlreadyEnrolled)
@@ -52,7 +45,7 @@ namespace POKA.POC.DDD.Extensions.Commands
             await this._masterDbRepository.BeginTransactionAsync(cancellationToken);
             {
                 await this._masterDbRepository.Students.UpdateAsync(studentAggregate.Id, studentAggregate, cancellationToken);
-                await this._eventStoreRepository.SaveFromAggregateAsync(studentAggregate, cancellationToken);
+
                 await this._mediator.PublishAndCommitDomainEventAsync(studentAggregate, cancellationToken);
             }
             await this._masterDbRepository.CommitTransactionAsync(cancellationToken);
