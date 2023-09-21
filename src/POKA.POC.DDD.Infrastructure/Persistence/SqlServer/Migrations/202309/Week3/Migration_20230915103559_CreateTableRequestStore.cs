@@ -46,7 +46,7 @@ namespace Edonys.JoyBiiz.Infrastructure.Persistence.Migrations
                     .WithColumn("Error")
                         .AsString(int.MaxValue)
                         .Nullable()
-                    .WithColumn("UserId")
+                    .WithColumn("CreatedByUserId")
                         .AsGuid()
                         .Nullable()
                     .WithColumn("ParentId")

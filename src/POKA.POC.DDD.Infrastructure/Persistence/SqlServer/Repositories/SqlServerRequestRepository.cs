@@ -23,8 +23,7 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.Repositories
             var requestEntity = new RequestEntity(
                 data: JsonConvert.SerializeObject(request, Constants.DefaultJsonSerializerSettings),
                 applicationPerformer: this._appSettingsProvider.ApplicationName,
-                userId: this._currentUserProvider?.Id,
-                status: RequestStatusEnum.Pending,
+                createdByUserId: this._currentUserProvider?.Id,
                 name: request.GetType().Name,
                 createdOn: DateTime.UtcNow,
                 parentId: this._parentId,

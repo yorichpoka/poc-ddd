@@ -58,7 +58,8 @@ namespace POKA.POC.DDD.Extensions
                 .HasConversion(
                     value => value.Value,
                     dbValue => new UserId(dbValue)
-                );
+                )
+                .IsRequired(false);
 
             return builder;
         }

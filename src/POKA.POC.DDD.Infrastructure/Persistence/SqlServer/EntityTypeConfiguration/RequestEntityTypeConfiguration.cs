@@ -7,7 +7,9 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
         public void Configure(EntityTypeBuilder<RequestEntity> builder)
         {
             builder
-                .ConfigureBaseEntity<RequestEntity, RequestId>("RequestStore", "dbo");
+                .ConfigureBaseEntity<RequestEntity, RequestId>("RequestStore", "dbo")
+                .ConfigureHasCreatedByUserId()
+                .ConfigureHasCreatedOn();
 
             builder
                 .Property(l => l.ApplicationPerformer)
@@ -57,16 +59,6 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                 .IsRequired();
 
             builder
-                .Property(l => l.UserId)
-                .HasColumnName("UserId")
-                .HasMaxLength(100)
-                .HasConversion(
-                    value => value.Value,
-                    dbValue => new UserId(dbValue)
-                )
-                .IsRequired(false);
-
-            builder
                 .Property(l => l.ParentId)
                 .HasColumnName("ParentId")
                 .HasMaxLength(100)
@@ -85,12 +77,6 @@ namespace POKA.POC.DDD.Infrastructure.Persistence.SqlServer.EntityTypeConfigurat
                 .Property(l => l.Duration)
                 .HasColumnName("Duration")
                 .IsRequired(false);
-
-            builder
-                .Property(l => l.CreatedOn)
-                .HasColumnName("CreatedOn")
-                .ValueGeneratedOnAdd()
-                .IsRequired();
         }
     }
 }
